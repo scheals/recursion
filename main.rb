@@ -1,11 +1,8 @@
 def fibs(number)
   all_the_fibs = []
   (0...number).each do |num|
-    all_the_fibs << case num
-                    when 0
-                      0
-                    when 1
-                      1
+    all_the_fibs << if num <= 1
+                      num
                     else
                       all_the_fibs[num - 1] + all_the_fibs[num - 2]
                     end
