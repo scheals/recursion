@@ -19,9 +19,7 @@ def fibs_rec(number, all_the_fibs = [])
 end
 
 def recursive_fibonacci(number)
-  return 0 if number.zero?
-
-  return 1 if number == 1
+  return number if number <= 1
 
   recursive_fibonacci(number - 1) + recursive_fibonacci(number - 2)
 end
