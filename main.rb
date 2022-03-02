@@ -32,7 +32,7 @@ def merge_sort(array, sorted = [])
   left_element = merge_sort(left_half, sorted).clone
   right_element = merge_sort(right_half, []).clone
   sorted.clear
-  (right_element.length + 5).times do
+  loop do
     break sorted.push(right_element[0..-1]) if left_element.empty?
     break sorted.push(left_element[0..-1]) if right_element.empty?
 
@@ -56,4 +56,4 @@ p merge_sort([5, 4, 6, 7, 8, 1, 3])
 p merge_sort([5, 4, 6, 7, 8, 1, 3].shuffle)
 p merge_sort([8, 3, 9, 7, 9, 2, 5, 6])
 p merge_sort([8, 3, 9, 7, 9, 2, 5, 6].shuffle)
-p merge_sort(random_array(15))
+p merge_sort(random_array(100))
