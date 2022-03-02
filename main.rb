@@ -25,3 +25,21 @@ def recursive_fibonacci(number)
 end
 p fibs(8)
 p fibs_rec(8)
+
+def merge_sort(array, sorted = [])
+  return array if array.length < 2
+
+  left_half = array.slice!(0, (array.length / 2).floor)
+  right_half = array
+  left_element = merge_sort(left_half, sorted).first
+  right_element = merge_sort(right_half, sorted).first
+  if left_element > right_element
+    sorted << right_element
+    sorted << left_element
+  else
+    sorted << left_element
+    sorted << right_element
+  end
+  sorted
+end
+p merge_sort([8, 3, 9, 7, 9, 2, 5, 6])
