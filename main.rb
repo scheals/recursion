@@ -23,23 +23,37 @@ def recursive_fibonacci(number)
 
   recursive_fibonacci(number - 1) + recursive_fibonacci(number - 2)
 end
-p fibs(8)
-p fibs_rec(8)
 
 def merge_sort(array, sorted = [])
   return array if array.length < 2
 
   left_half = array.slice!(0, (array.length / 2).floor)
   right_half = array
-  left_element = merge_sort(left_half, sorted).first
-  right_element = merge_sort(right_half, sorted).first
-  if left_element > right_element
-    sorted << right_element
-    sorted << left_element
-  else
-    sorted << left_element
-    sorted << right_element
+  left_element = merge_sort(left_half, sorted).clone
+  right_element = merge_sort(right_half, []).clone
+  sorted.clear
+  (right_element.length + 5).times do
+    break sorted.push(right_element[0..-1]) if left_element.empty?
+    break sorted.push(left_element[0..-1]) if right_element.empty?
+
+    if left_element.first > right_element.first
+      sorted.push(right_element.shift)
+    else
+      sorted.push(left_element.shift)
+    end
   end
-  sorted
+  sorted.flatten
 end
+
+def random_array(length)
+  array = []
+  length.times do
+    array.push(rand(100))
+  end
+  array
+end
+p merge_sort([5, 4, 6, 7, 8, 1, 3])
+p merge_sort([5, 4, 6, 7, 8, 1, 3].shuffle)
 p merge_sort([8, 3, 9, 7, 9, 2, 5, 6])
+p merge_sort([8, 3, 9, 7, 9, 2, 5, 6].shuffle)
+p merge_sort(random_array(15))
